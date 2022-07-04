@@ -1,32 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import './App.css';
 import {connect} from "react-redux";
-import {setSearchField} from "../actions";
+import {requestRobots, setSearchField} from "../actions";
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      robots: []
-    }
-  }
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response=> response.json())
-      .then(users => {this.setState({ robots: users})});
+      debugger;
+    this.props.onRequestRobots()
   }
 
   render() {
-    const { robots } = this.state;
-    const {searchField, onSearchChange} = this.props;
+    const {searchField, onSearchChange, robots, isPending, error} = this.props;
     const filteredRobots = robots.filter(robot =>{
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
-    return !robots.length ?
+    return isPending ?
       <h1>Loading</h1> :
       (
         <div className='tc'>
@@ -41,14 +33,19 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
  return {
-   searchField: state.searchField
+     searchField: state[0].searchField,
+     robots: state[1].robots,
+     isPending: state[1].isPending,
+     error: state[1].error,
  }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestRobots: () => requestRobots(dispatch)
     }
 }
 
