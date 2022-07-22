@@ -35,6 +35,7 @@
     ]
   },
   "devDependencies": {
+    "c8": "~7.12.0",
     "vitest": "~0.18.1"
   }
 }
