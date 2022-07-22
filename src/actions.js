@@ -3,7 +3,6 @@ import {CHANGE_SEARCH_FIELD, REQUEST_ROBOTS_FAILED, REQUEST_ROBOTS_PENDING, REQU
 export const setSearchField = (text) => ({
         type: CHANGE_SEARCH_FIELD,
         payload: text
-
 })
 
 export const requestRobots = (dispatch) => {

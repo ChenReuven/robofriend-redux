@@ -2,6 +2,7 @@
   "name": "robofriends",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@reduxjs/toolkit": "~1.8.3",
     "react": "^17.0.2",
@@ -12,12 +13,14 @@
     "redux-thunk": "~2.4.1",
     "tachyons": "^4.12.0",
     "@vitejs/plugin-react": "1.1.1",
-    "vite": "2.7.0"
+    "vite": "3.0.2"
   },
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "browserslist": {
     "production": [
@@ -30,5 +33,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "vitest": "~0.18.1"
   }
 }
